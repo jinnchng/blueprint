@@ -46,22 +46,7 @@ if st.button('Send'):
         max_tokens=4096,
         messages=[msg]
     )
-    # Define a function to validate and fix the Markdown table
-def validate_and_fix_markdown_table(response_text):
-    # Basic cleanup to ensure proper Markdown syntax
-    rows = response_text.strip().split('\n')
-    if len(rows) < 2:  # At least headers and one row
-        return "Error: Table is incomplete."
-    
-    # Ensure the second line (separator) has the right format
-    if not re.match(r'^[-|\s]+$', rows[1]):
-        rows.insert(1, '|' + '|'.join(['-' * len(cell) for cell in rows[0].split('|')]) + '|')
-    
-    return '\n'.join(rows)
-
-# Process the OpenAI response
-response_msg = validate_and_fix_markdown_table(response.choices[0].message.content)
-
+    response_msg = str(response.choices[0].message.content)
     # response_msg = 'This is a placeholder response'
 
     # Display user input and response
