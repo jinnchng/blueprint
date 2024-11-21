@@ -43,7 +43,7 @@ if st.button('Send'):
     response = client.chat.completions.create(
         model='gpt-4o',
         temperature=0.0,
-        max_tokens=300,
+        max_tokens=4096,
         messages=[msg]
     )
     response_msg = str(response.choices[0].message.content)
